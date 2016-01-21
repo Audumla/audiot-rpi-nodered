@@ -11,15 +11,19 @@ RUN apt-get update  && \
     apt-get install -y libi2c-dev && \
     apt-get install -y i2c-tools
 
-RUN touch /usr/share/doc/python-rpi.gpio
-COPY ./source /usr/local/lib/node_modules/node-red/nodes/core/hardware
-RUN chmod 777 /usr/local/lib/node_modules/node-red/nodes/core/hardware/nrgpio
-
 RUN git clone git://git.drogon.net/wiringPi && \
     cd wiringPi && \
     ./build
 
 ENV PYTHON /usr/bin/python2
+RUN wget -O python-rpi.gpio_armhf.deb http://sourceforge.net/projects/raspberry-gpio-python/files/raspbian-jessie/python-rpi.gpio_0.6.1-1~jessie_armhf.deb/download && \
+    dpkg -i python-rpi.gpio_armhf.deb && \
+    rm python-rpi.gpio_armhf.deb
+ 
+RUN touch /usr/share/doc/python-rpi.gpio
+COPY ./source /usr/local/lib/node_modules/node-red/nodes/core/hardware
+RUN chmod 777 /usr/local/lib/node_modules/node-red/nodes/core/hardware/nrgpio
+
 
 # install nodejs for rpi
 RUN wget http://node-arm.herokuapp.com/node_latest_armhf.deb && \
