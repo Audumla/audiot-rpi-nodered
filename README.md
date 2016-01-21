@@ -75,3 +75,11 @@ docker-compose up     //forground
 docker-compose start  //background
 docker-compose stop
 ```
+
+Open a shell to the running docker image
+```Shell
+
+docker exec -it [docker_id] bash
+```
+
+
