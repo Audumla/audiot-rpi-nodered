@@ -11,6 +11,10 @@ RUN apt-get update  && \
     apt-get install -y libi2c-dev && \
     apt-get install -y i2c-tools
 
+RUN touch /usr/share/doc/python-rpi.gpio
+COPY ./source /usr/local/lib/node_modules/node-red/nodes/core/hardware
+RUN chmod 777 /usr/local/lib/node_modules/node-red/nodes/core/hardware/nrgpio
+
 RUN git clone git://git.drogon.net/wiringPi && \
     cd wiringPi && \
     ./build
