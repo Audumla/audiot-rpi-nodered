@@ -20,9 +20,9 @@ RUN wget -O python-rpi.gpio_armhf.deb http://sourceforge.net/projects/raspberry-
     dpkg -i python-rpi.gpio_armhf.deb && \
     rm python-rpi.gpio_armhf.deb
  
-RUN touch /usr/share/doc/python-rpi.gpio
-COPY ./source /usr/local/lib/node_modules/node-red/nodes/core/hardware
-RUN chmod 777 /usr/local/lib/node_modules/node-red/nodes/core/hardware/nrgpio
+#RUN touch /usr/share/doc/python-rpi.gpio
+#COPY ./source /usr/local/lib/node_modules/node-red/nodes/core/hardware
+#RUN chmod 777 /usr/local/lib/node_modules/node-red/nodes/core/hardware/nrgpio
 
 
 # install nodejs for rpi
