@@ -34,12 +34,15 @@ RUN ln -s /usr/bin/python2-config ~/bin/python-config
 env PATH ~/bin:$PATH
 
 WORKDIR /root/.node-red
-RUN npm install node-red-node-redis && \
+RUN apt-get install -y git && \
+    npm install node-red-node-redis && \
     npm install node-red-contrib-googlechart && \
     npm install node-red-node-web-nodes && \
     npm install node-red-node-wemo && \
-    npm install --unsafe-perm  raspi-io && \
-    npm install --unsafe-perm  node-red-contrib-gpio 
+    npm install cron && \
+    npm install cron-job-manager && \
+    npm install --unsafe-perm raspi-io && \
+    npm install --unsafe-perm node-red-contrib-gpio 
 
 RUN apt-get autoremove -y wget && \
     apt-get autoremove -y git && \
