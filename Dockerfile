@@ -44,11 +44,11 @@ RUN ln -s /usr/bin/python2-config ~/bin/python-config
 env PATH ~/bin:$PATH
 
 WORKDIR /root/.node-red
-RUN npm install node-red-node-redis && \
-    npm install node-red-contrib-googlechart && \
-    npm install node-red-node-web-nodes && \
-    npm install node-red-node-wemo && \
-    npm install --unsafe-perm node-red-contrib-gpio 
+RUN npm install -g node-red-node-redis && \
+    npm install -g node-red-contrib-googlechart && \
+    npm install -g node-red-node-web-nodes && \
+    npm install -g node-red-node-wemo && \
+    npm install -g --unsafe-perm node-red-contrib-gpio 
 
 RUN apt-get autoremove -y wget && \
     apt-get autoremove -y git && \
