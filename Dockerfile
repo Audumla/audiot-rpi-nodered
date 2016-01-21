@@ -13,12 +13,6 @@ RUN apt-get install -y wget && \
     dpkg -i node_latest_armhf.deb && \
     rm node_latest_armhf.deb
 
-# install RPI.GPIO python libs
-RUN apt-get install -y wget && \
-     wget http://downloads.sourceforge.net/project/raspberry-gpio-python/raspbian-wheezy/python-rpi.gpio_0.5.11-1_armhf.deb && \
-     dpkg -i python-rpi.gpio_0.5.11-1_armhf.deb && \
-     rm python-rpi.gpio_0.5.11-1_armhf.deb
-
 # install node-red
 RUN apt-get install -y build-essential && \
     npm install -g --unsafe-perm  node-red
