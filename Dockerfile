@@ -11,6 +11,10 @@ RUN apt-get update  && \
     apt-get install -y libi2c-dev && \
     apt-get install -y i2c-tools
 
+RUN git clone git://git.drogon.net/wiringPi && \
+    cd wiringPi && \
+    ./build
+
 ENV PYTHON /usr/bin/python2
 
 # install nodejs for rpi
