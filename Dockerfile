@@ -11,20 +11,17 @@ ENV PYTHON /usr/bin/python2
 RUN apt-get install -y wget && \
     wget http://node-arm.herokuapp.com/node_latest_armhf.deb && \
     dpkg -i node_latest_armhf.deb && \
-    rm node_latest_armhf.deb && \
-    apt-get autoremove -y wget
+    rm node_latest_armhf.deb
 
 # install RPI.GPIO python libs
 RUN apt-get install -y wget && \
      wget http://downloads.sourceforge.net/project/raspberry-gpio-python/raspbian-wheezy/python-rpi.gpio_0.5.11-1_armhf.deb && \
      dpkg -i python-rpi.gpio_0.5.11-1_armhf.deb && \
-     rm python-rpi.gpio_0.5.11-1_armhf.deb && \
-     apt-get autoremove -y wget
+     rm python-rpi.gpio_0.5.11-1_armhf.deb
 
 # install node-red
 RUN apt-get install -y build-essential && \
-    npm install -g --unsafe-perm  node-red && \
-    apt-get autoremove -y build-essential
+    npm install -g --unsafe-perm  node-red
 
 # install nodered nodes
 RUN touch /usr/share/doc/python-rpi.gpio
@@ -39,7 +36,14 @@ env PATH ~/bin:$PATH
 WORKDIR /root/.node-red
 RUN npm install node-red-node-redis && \
     npm install node-red-contrib-googlechart && \
-    npm install node-red-node-web-nodes 
+    npm install node-red-node-web-nodes && \
+    npm install node-red-node-wemo && \
+    npm install --unsafe-perm  raspi-io && \
+    npm install --unsafe-perm  node-red-contrib-gpio 
+
+RUN apt-get autoremove -y wget && \
+    apt-get autoremove -y git && \
+    apt-get autoremove -y build-essential
 
 # run application
 EXPOSE 1880
