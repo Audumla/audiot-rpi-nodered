@@ -145,7 +145,6 @@ module.exports = {
 
     functionGlobalContext: {
         ssh:require('simple-ssh'),
-        wol:require('wake_on_lan')
         // os:require('os'),
         // bonescript:require('bonescript'),
         // jfive:require("johnny-five"),

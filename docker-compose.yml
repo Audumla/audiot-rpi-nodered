@@ -1,0 +1,26 @@
+nodered:
+  restart: always
+  image: audiot-rpi-nodered
+  command: flows.json
+  volumes:
+    - /home/pi/node-red:/root/.node-red
+    - /etc/localtime:/etc/localtime
+    - /lib/modules:/lib/modules
+  ports: 
+    - "1880:1880"
+  links:
+    - mosquitto
+  privileged: true
+  cap_add:
+    - SYS_RAWIO
+  devices:
+    - "/dev/mem:/dev/mem"
+    - "/dev/ttyAMA0:/dev/ttyAMA0"
+
+mosquitto:
+  restart: always
+  image: nieleyde/rpi-mosquitto
+  volumes:
+    - /etc/localtime:/etc/localtime
+  ports:
+    - "1883:1883"
