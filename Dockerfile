@@ -52,7 +52,7 @@ RUN npm install -g --unsafe-perm \
         node-red-contrib-gpio 
 
 # clean up
-RUN apt-get autoremove -y 
+RUN apt-get autoremove -y \
         wget \
         curl \
         git \
