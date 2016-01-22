@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     i2c-tools
 
 # install node red
-RUN wget "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-$ARM_VERSION.tar.gz" \
+RUN wget --no-check-certificate "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-$ARM_VERSION.tar.gz" \
   && tar -xzf "node-v$NODE_VERSION-linux-$ARM_VERSION.tar.gz" -C /usr/local --strip-components=1 \
   && rm "node-v$NODE_VERSION-linux-$ARM_VERSION.tar.gz"
         
