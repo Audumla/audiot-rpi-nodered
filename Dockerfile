@@ -1,5 +1,9 @@
 FROM hypriot/rpi-node:5.4.1-slim
 
+ENV NODE_VERSION 5.4.1
+ENV RPI_OS_RELEASE jessie
+ENV ARM_VERSION armv6l
+
 # install required packages, in one command
 RUN apt-get update && apt-get install -y --no-install-recommends \
         git \
@@ -7,7 +11,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         python-dev \
         libi2c-dev \
         i2c-tools
-RUN wget -O python-rpi.gpio_armhf.deb http://sourceforge.net/projects/raspberry-gpio-python/files/raspbian-jessie/python-rpi.gpio_0.6.1-1~jessie_armhf.deb/download && \
+RUN wget -O python-rpi.gpio_armhf.deb http://sourceforge.net/projects/raspberry-gpio-python/files/raspbian-$RPI_OS_RELEASE/python-rpi.gpio_*.deb/download && \
     dpkg -i python-rpi.gpio_armhf.deb && \
     rm python-rpi.gpio_armhf.deb
     
