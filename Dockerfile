@@ -44,6 +44,8 @@ RUN apt-get autoremove -y \
 RUN npm cache clean && \
     rm -fr /root/.node-gyp
 
+RUN npm ddp
+
 # run application
 EXPOSE 1880
 ENTRYPOINT ["node-red-pi","-v","--max-old-space-size=128"]
