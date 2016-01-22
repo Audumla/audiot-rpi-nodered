@@ -7,7 +7,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         python-dev \
         libi2c-dev \
         i2c-tools
-
+RUN wget -O python-rpi.gpio_armhf.deb http://sourceforge.net/projects/raspberry-gpio-python/files/raspbian-jessie/python-rpi.gpio_0.6.1-1~jessie_armhf.deb/download && \
+    dpkg -i python-rpi.gpio_armhf.deb && \
+    rm python-rpi.gpio_armhf.deb
+    
 RUN git clone git://git.drogon.net/wiringPi && \
     cd wiringPi && \
     ./build
