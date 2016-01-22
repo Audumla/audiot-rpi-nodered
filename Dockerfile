@@ -1,7 +1,7 @@
 FROM hypriot/rpi-node:5.4.1-slim
 
 # install required packages, in one command
-RUN sudo apt-get install -y --no-install-recommends \
+RUN apt-get update && apt-get install -y --no-install-recommends \
         git \
         build-essential \
         python-dev \
@@ -17,18 +17,18 @@ RUN wget -O python-rpi.gpio_armhf.deb http://sourceforge.net/projects/raspberry-
     rm python-rpi.gpio_armhf.deb
 
 # install top level dependencies
-RUN sudo npm install -g --unsafe-perm \
+RUN npm install -g --unsafe-perm \
         raspi-io \
         node-red \
         node-red-contrib-gpio 
 
 # clean up
-RUN sudo apt-get autoremove -y 
+RUN apt-get autoremove -y 
         wget \
         git \
         build-essential \
-    sudo rm -rf /var/lib/apt/lists/* && \
-    sudo apt-get clean
+    rm -rf /var/lib/apt/lists/* && \
+    apt-get clean
 
 # run application
 EXPOSE 1880
