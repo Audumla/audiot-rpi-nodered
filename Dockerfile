@@ -2,7 +2,6 @@ FROM resin/rpi-raspbian:jessie
 
 ENV NODE_VERSION 5.5.0
 ENV NPM_CONFIG_LOGLEVEL info
-ENV RPI_OS_RELEASE jessie
 ENV ARM_VERSION armv6l
         
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -37,7 +36,7 @@ RUN curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-
   && rm "node-v$NODE_VERSION-linux-$ARM_VERSION.tar.gz" SHASUMS256.txt.asc
         
 # install python gpio        
-RUN wget -O python-rpi.gpio_armhf.deb http://sourceforge.net/projects/raspberry-gpio-python/files/raspbian-$RPI_OS_RELEASE/python-rpi.gpio_*.deb/download && \
+RUN wget -O python-rpi.gpio_armhf.deb http://sourceforge.net/projects/raspberry-gpio-python/files/raspbian-jessie/python-rpi.gpio_*.deb/download && \
     dpkg -i python-rpi.gpio_armhf.deb && \
     rm python-rpi.gpio_armhf.deb
     
