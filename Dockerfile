@@ -2,7 +2,8 @@ FROM resin/rpi-raspbian:jessie
 
 #armv should be either armv6l or armv7l
 ARG armv=armv6l
-ENV NODE_VERSION 5.5.0
+ARG node=5.5.0
+ENV NODE_VERSION $node
 ENV NPM_CONFIG_LOGLEVEL info
 ENV ARM_VERSION $armv
         
