@@ -18,7 +18,7 @@ RUN wget --no-check-certificate "https://nodejs.org/dist/v$NODE_VERSION/node-v$N
   && rm "node-v$NODE_VERSION-linux-$ARM_VERSION.tar.gz"
         
 # install python gpio        
-RUN wget -O python-rpi.gpio_armhf.deb http://sourceforge.net/projects/raspberry-gpio-python/files/raspbian-jessie/python-rpi.gpio_0.6.1-1.deb/download && \
+RUN wget -O python-rpi.gpio_armhf.deb http://sourceforge.net/projects/raspberry-gpio-python/files/raspbian-jessie/python-rpi.gpio_0.6.1-1~jessie_armhf.deb/download && \
     dpkg -i python-rpi.gpio_armhf.deb && \
     rm python-rpi.gpio_armhf.deb
     
