@@ -34,7 +34,7 @@ RUN apt-get install git build-essential && \
     rm -fr /.wiringPi && \
     npm install -g --unsafe-perm node-red && \
     cd /usr/local/lib/node_modules/node-red/ && \
-    npm install --unsafe-perm raspi-io node-red-contrib-gpio && \
+    npm install --no-optional --unsafe-perm raspi-io node-red-contrib-gpio && \
     npm cache clean && \
     rm -fr /root/.node-gyp && \
     apt-get autoremove -y git build-essential && \
