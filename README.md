@@ -10,9 +10,18 @@ Advantages of using docker on this environment are,
 
 The downside to this is overcoming the issues imposed by the segrated nature of the docker system. Notably these occur when nodejs packages have build dependancies that are not part of the base docker container and utilize mutlitple languages. To simplify this the base Docker file builds all dependant libraries for the more troublesome packages, like node-red-contrib-gpio.  
 
-Along side this, docker-compose provides a clean method to expose ports and device mappings to the containers and allows an easy way to load the entire setup on boot.
+#Installation and Setup
+
+i2c must be exposed on the host system otherwise the raspi-io module will fail when the docker container starts node-red. To ensure i2c is available, run the following commands  
+```Shell
+
+sudo modprobe i2c-dev
+ls /dev/i2c*
+```
 
 # Docker Compose
+To provide a clean and simple set of configuration, docker-compose is used to expose ports and device mappings to the containers and allows an easy way to load the entire setup on boot.
+
 ```YAML
 
 nodered:
@@ -41,18 +50,16 @@ mosquitto:
     - "1883:1883"
 ```
 
-# Add new nodes
-To add new nodes get the docker id using docker ps, and either shell into the docker container or execute using docker parameters, the commands shown below.
-
-By installing the nodes using the docker container the build processes are ensured to execute using the versions contained within the container and not the host system. The generated output files will be stored in the node_modules directory that should be mapped to the host using docker volumes. This ensures that the docker container is not modified and can be swapped out at a later stage. If however the build produces output files that are not installed under the node_modules directory then it may be necessary to customize the Dockerfile itself. 
-
+# Install Node Modules
+Adding nodes should be performed from within the docker container so that the build processes utilize the docker installed libraries and not the host systems, which may cause version conflicts. The generated node module output files will be stored in the node_modules directory. This should be mapped to a directory within host system, or a docker volume, to ensures that the docker container is not modified and can be swapped out at a later stage. If however the build produces output files that are not installed under the node_modules directory then it may be necessary to customize the Dockerfile itself, or create more volume points within the container. 
 When upgrading or chaning the version of the node-red container modules may need to be reinstalled as version numbers are often stored as part of the module build process.
 
+The following commands can be used to install a new module using the container itself
 ```Shell
 
 docker ps
 docker exec -it [docker_id] bash
-sudo npm --unsafe-perm install [node_id]
+sudo npm --unsafe-perm install [module]
 ```
 #Useful Docker Commands
 
