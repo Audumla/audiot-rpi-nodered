@@ -1,8 +1,10 @@
 FROM resin/rpi-raspbian:jessie
 
+#armv should be either armv6l or armv7l
+ARG armv=armv6l
 ENV NODE_VERSION 5.5.0
 ENV NPM_CONFIG_LOGLEVEL info
-ENV ARM_VERSION armv6l
+ENV ARM_VERSION $armv
         
 RUN apt-get update && apt-get install -y --no-install-recommends \
     python \
