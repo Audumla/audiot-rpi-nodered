@@ -1,5 +1,5 @@
 # audiot-nodered
-This is a docker implemetation for running Node-Red on a RaspberryPi providing native device access such as GPIO, I2C etc. The base image contains node modules that require specialized build to operate successfully within docker. These include
+A docker implementation for Node-Red on a RaspberryPi providing native device access such as GPIO, I2C etc. The base image contains node modules that require specialized builds to operate successfully within docker. These include
   * node-red-contrib.gpio
   * raspi-io
   * wiringPI
