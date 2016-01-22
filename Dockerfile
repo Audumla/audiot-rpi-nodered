@@ -12,10 +12,6 @@ RUN git clone git://git.drogon.net/wiringPi && \
     cd wiringPi && \
     ./build
 
-RUN wget -O python-rpi.gpio_armhf.deb http://sourceforge.net/projects/raspberry-gpio-python/files/raspbian-jessie/python-rpi.gpio_0.6.1-1~jessie_armhf.deb/download && \
-    dpkg -i python-rpi.gpio_armhf.deb && \
-    rm python-rpi.gpio_armhf.deb
-
 # install top level dependencies
 RUN npm install -g --unsafe-perm \
         raspi-io \
