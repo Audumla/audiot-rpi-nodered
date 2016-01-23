@@ -1,4 +1,4 @@
-#!/bin.bash
+#!/bin/bash
 
 cd /home/pi
 mkdir node-red/node_modules
