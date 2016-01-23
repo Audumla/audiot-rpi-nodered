@@ -1,5 +1,5 @@
 #!/bin/bash
 
 cd /home/pi
-mkdir node-red/node_modules
+mkdir -p node-red/node_modules
 wget  --no-check-certificate https://github.com/Audumla/audiot-rpi-nodered/raw/master/docker-compose.yml
