@@ -1,7 +1,7 @@
 
   nodered:
     restart: always
-    image: audiot-rpi-nodered
+    image: audumla/audiot-rpi-nodered
     command: flows.json
     volumes:
       - /home/pi/node-red:/root/.node-red
