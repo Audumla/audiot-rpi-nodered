@@ -14,19 +14,14 @@ Installed libraries:
    * Python : v2.7
    * WiringPI : v2.31
 
-Also available with a docker-compose configuration with RaspberryPi hardware and connectivity to an accompanying MQTT docker container. 
-
-Capabilities provided through the use of docker are,
-  * Easily apply newer versions of node-red
-  * Swap in different MQTT implementations without impacting the installed flows
-  * Issolate each component into discrete containers without impacting the host system
-  * Easily migrate to a new host platform
-  * Templated environments to segregate non-production or test from production
-
-Issues that often need to be overcome occur when nodejs packages have build dependancies that are not part of the base docker container and utilize mutlitple languages. To simplify this the provide Docker file builds dependant libraries for the more troublesome packages and loads them into the global node context. More modules may be added over time to simplify using node-red within a docker container on the RaspberryPi platform  
+Also available with a docker-compose script with RaspberryPi hardware and connectivity to an accompanying MQTT docker container. 
 
 #Installation and Setup
+##Docker Compose
+To provide a clean and simple set of configuration, docker-compose is used to expose ports and device mappings to the containers and allows an easy way to load the entire setup on boot.
+see [docker-compose.yml](./docker-compose.yml)
 
+##I2C Availability
 i2c must be exposed on the host system otherwise the raspi-io module will fail when the docker container starts node-red. To ensure i2c is available, run the following commands  
 ```Shell
 
@@ -35,12 +30,22 @@ sudo modprobe i2c-dev
 ls /dev/i2c*
 ```
 
-# Docker Compose
-To provide a clean and simple set of configuration, docker-compose is used to expose ports and device mappings to the containers and allows an easy way to load the entire setup on boot.
+##Container Volumes
+If running outside of the docker-compose scripts then the following Volumes should be used.
+
+```
+/root/.node-red 
+```
+The following volume should be mapped externally to allow custom module installations to be managed outside of the container
+
+```
+/lib/modules
+```
+This volume must be mapped to the hosts /lib/modules directory so that the dependant modules can start. As several direct IO modules use libraries that use the base OS for directory name references mapping this volume allows the container to stay independant of a specific OS implementation 
 
 # Installing Node Modules
-Adding nodes should be performed from within the docker container so that the build processes utilize the docker installed libraries and not the host systems. Otherwise version conflicts may occur. 
-Generated node module output files will be stored in the containers /root/.node-red/node_modules directory. This should be mapped to a directory within the host system, or a docker volume, to ensure that the docker container is not modified and can be swapped out at a later stage. 
+Adding nodes should be performed from within the docker container so that the build processes utilize the docker installed libraries and not the host systems, otherwise version conflicts may occur. 
+Generated node module output files should be stored in the containers /root/.node-red/node_modules directory. This should be mapped to a directory within the host system, or a docker volume, to ensure that the docker container is not modified and can be swapped out at a later stage. 
 
 Modules that produce output files that are not installed under this node_modules directory may require customization of the Dockerfile itself, or more volume points within the container. 
 
