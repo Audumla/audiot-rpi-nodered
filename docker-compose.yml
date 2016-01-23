@@ -1,5 +1,4 @@
-version: 2
-services:
+
   nodered:
     restart: always
     image: audiot-rpi-nodered
