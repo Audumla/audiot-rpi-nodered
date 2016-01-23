@@ -1,8 +1,11 @@
 FROM resin/rpi-raspbian:jessie
 
-ENV NODE_VERSION 5.5.0
+#armv should be either armv6l or armv7l
+ARG armv=armv6l
+ARG node=5.5.0
+ENV NODE_VERSION $node
 ENV NPM_CONFIG_LOGLEVEL info
-ENV ARM_VERSION armv6l
+ENV ARM_VERSION $armv
         
 RUN apt-get update && apt-get install -y --no-install-recommends \
     python \
@@ -32,7 +35,7 @@ RUN apt-get install git build-essential && \
     rm -fr /.wiringPi && \
     npm install -g --unsafe-perm node-red && \
     cd /usr/local/lib/node_modules/node-red/ && \
-    npm install --unsafe-perm raspi-io node-red-contrib-gpio && \
+    npm install --no-optional --unsafe-perm raspi-io node-red-contrib-gpio && \
     npm cache clean && \
     rm -fr /root/.node-gyp && \
     apt-get autoremove -y git build-essential && \
@@ -44,4 +47,5 @@ RUN rm -rf /var/lib/apt/lists/* && \
 
 # run application
 EXPOSE 1880
+VOLUME ["/root/.node-red", "/lib/modules"]
 ENTRYPOINT ["node-red-pi","-v","--max-old-space-size=128"]
