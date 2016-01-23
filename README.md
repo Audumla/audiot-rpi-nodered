@@ -1,6 +1,6 @@
 ### Supported Tags
-* `rpiv2` *(Build for armv7l with module versions as specified below)*
-* `rpiv1`, `latest` *(Build for armv7l with module versions as specified below)*
+* `rpiv2 (TBC)` *(Build for armv7l with module versions as specified below)*
+* `rpiv1 (TBC)`, `latest` *(Build for armv6l with module versions as specified below)*
 
 # audiot-rpi-nodered
 Docker Image with [Node.js](https://nodejs.org/) and [Node-RED](http://nodered.org/)
