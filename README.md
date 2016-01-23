@@ -1,8 +1,12 @@
+##Supported Tags
+*rpiv2 (Build for armv7l with module versions as specified below) 
+*rpiv1, latest (Build for armv7l with module versions as specified below)
+
 # audiot-rpi-nodered
 Docker Image with [Node.js](https://nodejs.org/) and [Node-RED](http://nodered.org/)
 Based on [Raspbian Jessie](resin/rpi-raspbian:jessie) image using armv6l based builds
 
-A docker implementation for Node-Red on a RaspberryPi providing native device access such as GPIO, I2C etc. The base image 
+A docker implementation for Node-Red on a RaspberryPi providing native device access such as GPIO, I2C etc. The base image
 
 Built with device access to GPIO, I2C etc, and pre installed modules: 
    * node-red-contrib-gpio
