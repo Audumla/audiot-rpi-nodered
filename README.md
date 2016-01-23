@@ -33,12 +33,12 @@ ls /dev/i2c*
 ```
 
 ##Container Volumes
-If running outside of the docker-compose scripts then the following Volumes should be used.
+If running outside of the docker-compose scripts then the following Volumes should be mapped:
 
 ```
 /root/.node-red 
 ```
-The following volume should be mapped externally to allow custom module installations to be managed outside of the container
+This should be mapped externally to allow custom module installations to be managed outside of the container
 
 ```
 /lib/modules
