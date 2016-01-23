@@ -59,13 +59,17 @@ sudo npm install [module]
 Run the Node-red docker image from command line
 ```Shell
 
-docker run --cap-add=SYS_RAWIO --privileged=true -it audiot-rpi-nodered
+docker run --cap-add=SYS_RAWIO \
+  --privileged=true \
+  -v /home/pi/node-red:/root/.node-red \
+  -v /lib/modules:/lib/modules \
+  audumla/audiot-rpi-nodered
 ```
 
 Build the audio-rpi-nodered docker image
 ```Shell
 
-docker build --rm -t audiot-rpi-nodered .
+docker build --rm -t audumla/audiot-rpi-nodered .
 ```
 
 Start/Stop the docker containers using docker-compose
