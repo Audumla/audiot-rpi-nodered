@@ -47,4 +47,5 @@ RUN rm -rf /var/lib/apt/lists/* && \
 
 # run application
 EXPOSE 1880
+VOLUME ["/root/.node-red", "/lib/modules"]
 ENTRYPOINT ["node-red-pi","-v","--max-old-space-size=128"]
