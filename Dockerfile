@@ -19,7 +19,7 @@ RUN wget --no-check-certificate "https://nodejs.org/dist/v$NODE_VERSION/node-v$N
     rm "node-v$NODE_VERSION-linux-$ARM_VERSION.tar.gz"
     
 # install python gpio        
-RUN wget -O python-rpi.gpio_armhf.deb http://sourceforge.net/projects/raspberry-gpio-python/files/raspbian-jessie/python-rpi.gpio_0.6.1-1~jessie_armhf.deb/download && \
+RUN wget --no-check-certificate -O python-rpi.gpio_armhf.deb http://sourceforge.net/projects/raspberry-gpio-python/files/raspbian-jessie/python-rpi.gpio_0.6.1-1~jessie_armhf.deb/download && \
     dpkg -i python-rpi.gpio_armhf.deb && \
     rm python-rpi.gpio_armhf.deb
 
@@ -35,7 +35,7 @@ RUN apt-get install git build-essential && \
     npm cache clean && \
     cd /usr/local/lib/node_modules/node-red/ && \
     rm settings.js && \
-    wget https://github.com/audumla/audiot-rpi-nodered/raw/master/node-red/settings.js && \
+    wget --no-check-certificate https://github.com/audumla/audiot-rpi-nodered/raw/master/node-red/settings.js && \
     rm -fr /root/.node-gyp && \
     apt-get autoremove -y git build-essential && \
     npm ddp
