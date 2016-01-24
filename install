@@ -1,6 +1,12 @@
 #!/bin/bash
 
 cd /home/pi
-mkdir -p node-red/node_modules
+mkdir -p node-red
 wget  --no-check-certificate https://github.com/Audumla/audiot-rpi-nodered/raw/master/docker-compose.yml
-wget  --no-check-certificate https://github.com/node-red/node-red/raw/master/settings.js
+if grep -l v7l /proc/cpuinfo
+then
+    sed -i 's/audumla\/audiot-rpi-nodered/audumla\/audiot-rpi-nodered:v7l' docker-compose.yml
+else
+    sed -i 's/audumla\/audiot-rpi-nodered/audumla\/audiot-rpi-nodered:v6l' docker-compose.yml
+fi
+
