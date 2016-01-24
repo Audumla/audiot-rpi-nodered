@@ -31,6 +31,7 @@ RUN apt-get install git build-essential && \
     ./build && \
     rm -fr /.wiringPi && \
     npm install -g --unsafe-perm node-red && \
+    cd /usr/local/lib/node_modules/node-red/ && \
     npm install --no-optional --unsafe-perm raspi-io johnny-five node-red-contrib-gpio && \
     npm cache clean && \
     cd /usr/local/lib/node_modules/node-red/ && \
