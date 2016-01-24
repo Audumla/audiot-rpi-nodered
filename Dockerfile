@@ -10,22 +10,19 @@ ENV ARM_VERSION $armv
 RUN apt-get update && apt-get install -y --no-install-recommends \
     python \
     libi2c-dev \
-    i2c-tools
+    i2c-tools \ 
+    wget
 
 # install node red
-RUN apt-get install -y wget && \
-    wget --no-check-certificate "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-$ARM_VERSION.tar.gz" && \
+RUN wget --no-check-certificate "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-$ARM_VERSION.tar.gz" && \
     tar -xzf "node-v$NODE_VERSION-linux-$ARM_VERSION.tar.gz" -C /usr/local --strip-components=1 && \
-    rm "node-v$NODE_VERSION-linux-$ARM_VERSION.tar.gz" && \
-    apt-get autoremove -y wget
+    rm "node-v$NODE_VERSION-linux-$ARM_VERSION.tar.gz"
     
 # install python gpio        
-RUN apt-get install -y wget && \
-    wget -O python-rpi.gpio_armhf.deb http://sourceforge.net/projects/raspberry-gpio-python/files/raspbian-jessie/python-rpi.gpio_0.6.1-1~jessie_armhf.deb/download && \
+RUN wget -O python-rpi.gpio_armhf.deb http://sourceforge.net/projects/raspberry-gpio-python/files/raspbian-jessie/python-rpi.gpio_0.6.1-1~jessie_armhf.deb/download && \
     dpkg -i python-rpi.gpio_armhf.deb && \
     rm python-rpi.gpio_armhf.deb && \
-    apt-get autoremove -y wget
-    
+
 # install latest wiring pi    
 # install top level node dependencies
 RUN apt-get install git build-essential && \
