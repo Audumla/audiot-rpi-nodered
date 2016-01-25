@@ -4,10 +4,17 @@ cd /home/pi
 mkdir -p node-red
 rm docker-compose.yml
 wget  --no-check-certificate https://github.com/Audumla/audiot-rpi-nodered/raw/master/docker-compose.yml
-if grep -l v7l /proc/cpuinfo
-then
+if grep -l v7l /proc/cpuinfo then
     sed -i 's/audumla\/audiot-rpi-nodered/audumla\/audiot-rpi-nodered:armv7l/g' docker-compose.yml
 else
     sed -i 's/audumla\/audiot-rpi-nodered/audumla\/audiot-rpi-nodered:armv6l/g' docker-compose.yml
+fi
+
+if ! [ -e '/dev/i2c-1' ] then 
+    if ! grep -l 'dtparam=i2c_arm=on' /boot/config.txt then
+        sudo echo 'dtparam=i2c_arm=on' >> /boot/config.txt
+        echo "Reboot required to enable i2c devices"
+    fi
+    sudo modprobe i2c-dev
 fi
 
