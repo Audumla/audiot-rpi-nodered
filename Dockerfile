@@ -42,6 +42,7 @@ RUN npm cache clean && \
     npm ddp && \
     rm -rf /var/lib/apt/lists/* && \
     rm -rf /.tmp && \
+    rm -rf /tmp && \
     apt-get clean
 
 # run application
