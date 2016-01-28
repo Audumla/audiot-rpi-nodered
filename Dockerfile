@@ -30,10 +30,10 @@ RUN apt-get install git build-essential && \
     cd wiringPi && \
     ./build && \
     rm -fr /.wiringPi && \
-    npm install -g --unsafe-perm node-red && \
+    npm install -g --unsafe-perm --link node-red && \
     mkdir /root/node_modules && \
     cd /root/node_modules && \
-    npm install --no-optional --unsafe-perm serialport johnny-five raspi-io node-red-contrib-gpio cron cron-job-manager simple-ssh && \ 
+    npm install --no-optional --unsafe-perm --link serialport johnny-five raspi-io node-red-contrib-gpio cron cron-job-manager simple-ssh && \ 
     apt-get autoremove -y git build-essential
 
 RUN npm cache clean && \
