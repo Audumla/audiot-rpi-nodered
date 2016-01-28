@@ -35,14 +35,15 @@ RUN apt-get install git build-essential && \
     cd /root/node_modules && \
     npm install --no-optional --unsafe-perm --link serialport johnny-five raspi-io node-red-contrib-gpio cron cron-job-manager simple-ssh && \ 
     apt-get autoremove -y git build-essential
+#
+#    cd /root/node_modules && \
+#    npm ddp && \
 
 RUN npm cache clean && \
     cd /usr/local/lib/node_modules/node-red/ && \
     rm settings.js && \
     wget --no-check-certificate https://github.com/audumla/audiot-rpi-nodered/raw/master/node-red/settings.js && \
     rm -fr /root/.node-gyp && \
-    cd /root/node_modules && \
-    npm ddp && \
     rm -rf /var/lib/apt/lists/* && \
     rm -rf /.tmp && \
     rm -rf /tmp && \
