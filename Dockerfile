@@ -31,7 +31,9 @@ RUN apt-get install git build-essential && \
     ./build && \
     rm -fr /.wiringPi && \
     npm install -g --unsafe-perm node-red && \
-    npm install -g --no-optional --unsafe-perm serialport aspi-io node-red-contrib-gpio && \ 
+    mkdir /root/node_modules && \
+    cd /root/node_modules && \
+    npm install --no-optional --unsafe-perm serialport johnny-five raspi-io node-red-contrib-gpio cron cron-job-manager simple-ssh && \ 
     apt-get autoremove -y git build-essential
 
 RUN npm cache clean && \
@@ -39,6 +41,7 @@ RUN npm cache clean && \
     rm settings.js && \
     wget --no-check-certificate https://github.com/audumla/audiot-rpi-nodered/raw/master/node-red/settings.js && \
     rm -fr /root/.node-gyp && \
+    cd /root/node_modules && \
     npm ddp && \
     rm -rf /var/lib/apt/lists/* && \
     rm -rf /.tmp && \
